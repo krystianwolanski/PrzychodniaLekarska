@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="LEKARZE">
+      <EntityTypeMapping TypeName="Model.LEKARZE">
+        <MappingFragment StoreEntitySet="LEKARZE">
+          <ScalarProperty Name="ID_LEKARZA" ColumnName="ID_LEKARZA" />
+          <ScalarProperty Name="IMIĘ" ColumnName="IMIĘ" />
+          <ScalarProperty Name="NAZWISKO" ColumnName="NAZWISKO" />
+          <ScalarProperty Name="SPECJALIZACJA" ColumnName="SPECJALIZACJA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PACJENCI">
+      <EntityTypeMapping TypeName="Model.PACJENCI">
+        <MappingFragment StoreEntitySet="PACJENCI">
+          <ScalarProperty Name="ID_PACJENTA" ColumnName="ID_PACJENTA" />
+          <ScalarProperty Name="IMIĘ" ColumnName="IMIĘ" />
+          <ScalarProperty Name="NAZWISKO" ColumnName="NAZWISKO" />
+          <ScalarProperty Name="PESEL" ColumnName="PESEL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WIZYTY">
+      <EntityTypeMapping TypeName="Model.WIZYTY">
+        <MappingFragment StoreEntitySet="WIZYTY">
+          <ScalarProperty Name="ID_WIZYTY" ColumnName="ID_WIZYTY" />
+          <ScalarProperty Name="DATA_REJESTRACJI" ColumnName="DATA_REJESTRACJI" />
+          <ScalarProperty Name="TERMIN_WIZYTY" ColumnName="TERMIN_WIZYTY" />
+          <ScalarProperty Name="ID_LEKARZA" ColumnName="ID_LEKARZA" />
+          <ScalarProperty Name="ID_PACJENTA" ColumnName="ID_PACJENTA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

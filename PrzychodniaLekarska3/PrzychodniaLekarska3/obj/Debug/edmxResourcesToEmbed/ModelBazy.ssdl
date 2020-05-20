@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="LEKARZE">
+    <Key>
+      <PropertyRef Name="ID_LEKARZA" />
+    </Key>
+    <Property Name="ID_LEKARZA" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IMIĘ" Type="varchar2" MaxLength="20" />
+    <Property Name="NAZWISKO" Type="varchar2" MaxLength="20" />
+    <Property Name="SPECJALIZACJA" Type="varchar2" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="PACJENCI">
+    <Key>
+      <PropertyRef Name="ID_PACJENTA" />
+    </Key>
+    <Property Name="ID_PACJENTA" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IMIĘ" Type="varchar2" MaxLength="20" />
+    <Property Name="NAZWISKO" Type="varchar2" MaxLength="20" />
+    <Property Name="PESEL" Type="varchar2" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WIZYTY">
+    <Key>
+      <PropertyRef Name="ID_WIZYTY" />
+    </Key>
+    <Property Name="ID_WIZYTY" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DATA_REJESTRACJI" Type="date" />
+    <Property Name="TERMIN_WIZYTY" Type="date" />
+    <Property Name="ID_LEKARZA" Type="number" Precision="38" Scale="0" />
+    <Property Name="ID_PACJENTA" Type="number" Precision="38" Scale="0" />
+  </EntityType>
+  <Association Name="FK_ID_LEKARZA">
+    <End Role="LEKARZE" Type="Self.LEKARZE" Multiplicity="0..1" />
+    <End Role="WIZYTY" Type="Self.WIZYTY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LEKARZE">
+        <PropertyRef Name="ID_LEKARZA" />
+      </Principal>
+      <Dependent Role="WIZYTY">
+        <PropertyRef Name="ID_LEKARZA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_PACJENTA">
+    <End Role="PACJENCI" Type="Self.PACJENCI" Multiplicity="0..1" />
+    <End Role="WIZYTY" Type="Self.WIZYTY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PACJENCI">
+        <PropertyRef Name="ID_PACJENTA" />
+      </Principal>
+      <Dependent Role="WIZYTY">
+        <PropertyRef Name="ID_PACJENTA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="LEKARZE" EntityType="Self.LEKARZE" Schema="BAZA" store:Type="Tables" />
+    <EntitySet Name="PACJENCI" EntityType="Self.PACJENCI" Schema="BAZA" store:Type="Tables" />
+    <EntitySet Name="WIZYTY" EntityType="Self.WIZYTY" Schema="BAZA" store:Type="Tables" />
+    <AssociationSet Name="FK_ID_LEKARZA" Association="Self.FK_ID_LEKARZA">
+      <End Role="LEKARZE" EntitySet="LEKARZE" />
+      <End Role="WIZYTY" EntitySet="WIZYTY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_PACJENTA" Association="Self.FK_ID_PACJENTA">
+      <End Role="PACJENCI" EntitySet="PACJENCI" />
+      <End Role="WIZYTY" EntitySet="WIZYTY" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
